@@ -1,13 +1,13 @@
 # pdv-ssync
-- pdv ssh sync  
-  - Dependências:  
+pdv ssh sync  
+- Dependências:  
 
 >rsync  
 ssh  
 sshpass  
 openssh  
 openssl, 1.1.0+   
-___
+
 
 - Comandos Básicos:
 ```
