@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z "$#" ]; then
+if [ -n "$#" ]; then
 	pdv-getip "$@"
 fi
 

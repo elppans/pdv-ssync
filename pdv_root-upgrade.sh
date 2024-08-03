@@ -1,7 +1,9 @@
 #!/bin/bash
 
-export pdvcripto="/usr/share/pdv-shell/pdv_cripto.sh"
+# shellcheck source=/dev/null
+source /usr/share/pdv-shell/pdv_env
 
+# shellcheck disable=SC2154
 if [[ -e "$pdvcripto" ]]; then
 	. "$pdvcripto"
 else
@@ -9,32 +11,37 @@ else
 	 exit 0
 fi
 
+# shellcheck disable=SC2154
 if [ ! -e "$iponpdv" ]; then
-        echo -e "Arquivo \""$iponpdv"\" nao existe!"
+        echo -e "Arquivo \"""$iponpdv""\" nao existe!"
         exit 0
 fi
 
+# shellcheck disable=SC2154
 rm -rf "$iponupgradepdv"
 
+# shellcheck disable=SC2013
 for IP in $(cat "$iponpdv"); do
 if ping -c 1 "$IP" >> /dev/null; then
-echo -e ""$IP" ON!"
+echo -e """$IP"" ON!"
 #sshpass -p "$senha_criptografada" ssh $ssh_options root@"$IP" "grep '^root:' /etc/passwd" 2>> /dev/null || \
-sshpass -p "$senha_criptografada" ssh $ssh_options root@"$IP" "grep -q '^PermitRootLogin yes' /etc/ssh/sshd_config" 2>> /dev/null || \
+# shellcheck disable=SC2154
+sshpass -p "$senha_criptografada" ssh "$ssh_options" root@"$IP" "grep -q '^PermitRootLogin yes' /etc/ssh/sshd_config" 2>> /dev/null || \
 
-echo -e ""$IP"" | tee -a "$iponupgradepdv" && \
+echo -e """$IP""" | tee -a "$iponupgradepdv" && \
 
 if [ -e "$iponupgradepdv" ]; then
 export IPON="$iponupgradepdv"
 fi
 
  else
-echo -e ""$IP" OFF!"
+echo -e """$IP"" OFF!"
 fi
 done
 
 
 if [[ "$IPON" = "$iponupgradepdv" ]]; then
-. "$pdvrooton"
+# shellcheck disable=SC2154
+source "$pdvrooton"
 fi
 

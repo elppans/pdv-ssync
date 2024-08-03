@@ -1,7 +1,9 @@
 #!/bin/bash
 
-export pdvcripto="/usr/share/pdv-shell/pdv_cripto.sh"
+# shellcheck source=/dev/null
+source /usr/share/pdv-shell/pdv_env
 
+# shellcheck disable=SC2154
 if [[ -e "$pdvcripto" ]]; then
 	. "$pdvcripto"
 else
@@ -9,31 +11,35 @@ else
 	 exit 0
 fi
 
+# shellcheck disable=SC2154
 if [ ! -e "$iponpdv" ]; then
-        echo -e "Arquivo \""$iponpdv"\" nao existe!"
+        echo -e "Arquivo \"""$iponpdv""\" nao existe!"
         exit 0
 fi
 
 # Verifica se o diretório existe
+# shellcheck disable=SC2154
 if [ ! -d "$descanso" ]; then
     echo "O diretório $descanso não existe."
     exit 1
 fi
 
 # Verifica se o diretório está vazio
-if [ ! "$(ls -A $descanso)" ]; then
+if [ ! "$(ls -A "$descanso")" ]; then
     echo "O diretório $descanso está vazio."
     exit 1
 fi
 
+# shellcheck disable=SC2013
 for IP in $(cat "$iponpdv"); do
 if ping -c 1 "$IP" >> /dev/null; then
-echo -e ""$IP" ON!"
+echo -e """$IP"" ON!"
 # Copia via SSH
 #sshpass -p zanthus scp -o StrictHostKeyChecking=no -r /opt/descanso/* root@"$IP":/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj/
-sshpass -p "$senha_criptografada" rsync $rsync_options "ssh $ssh_options" "$descanso"/ root@"$IP":"$guiconfigproj"/
+# shellcheck disable=SC2154
+sshpass -p "$senha_criptografada" rsync "$rsync_options" "ssh $ssh_options" "$descanso"/ root@"$IP":"$guiconfigproj"/
  else
-echo -e ""$IP" OFF!"
+echo -e """$IP"" OFF!"
 fi
 done
 
