@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # shellcheck source=/dev/null
-source /usr/share/pdv-ssync/pdv_env
+source /opt/pdv-ssync/pdv_env
 
 # shellcheck disable=SC2154
 if [ -d "$pdvshelld" ]; then

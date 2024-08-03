@@ -1,6 +1,6 @@
 #!/bin/bash
 # shellcheck source=/dev/null
-source /usr/share/pdv-ssync/pdv_env
+source /opt/pdv-ssync/pdv_env
 
 # IPBancoZM="192.168.15.118"
 # DatabaseNameBase="ZeusRetail"
