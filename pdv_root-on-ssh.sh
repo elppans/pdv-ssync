@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # shellcheck source=/dev/null
-source /usr/share/pdv-shell/pdv_env
+source /usr/share/pdv-ssync/pdv_env
 
 # shellcheck disable=SC2154
 if [[ -e "$pdvcripto" ]]; then

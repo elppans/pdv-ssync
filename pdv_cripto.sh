@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # shellcheck source=/dev/null
-source /usr/share/pdv-shell/pdv_env
+source /usr/share/pdv-ssync/pdv_env
 
 # Verifica se o comando ssh está disponível
 # shellcheck disable=SC2162
