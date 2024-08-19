@@ -18,7 +18,9 @@ if [ ! -e "$iponpdv" ]; then
 fi
 
 IPON=${IPON:-$iponpdv}
-export ssh_options="${ssh_options} -t"
+ssh_options="${ssh_options} -t"
+export IPON
+export ssh_options
 
 if [ ! -e "$IPON" ]; then
         echo -e "Arquivo \"""$IPON""\" nao existe!"
