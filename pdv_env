@@ -14,9 +14,9 @@ export pdvcripto="$pdvshelld/pdv_cripto.sh"
 export sshpass_file=~/.ssh/pdvssl
 export encryption_key_file=~/.ssh/pdv-encryption_key
 #export rsync_options="-avz --no-checksum --no-owner --no-group -e"
-#export rsync_options="-ahvz --no-checksum --no-owner --no-group -e"
+export rsync_options="-ahvz --no-checksum --no-owner --no-group -e"
 #export rsync_options="-avz --delete --no-checksum --no-owner --no-group -e"
-export rsync_options="-ahvz --delete --no-checksum --no-owner --no-group -e"
+#export rsync_options="-ahvz --delete --no-checksum --no-owner --no-group -e"
 #export rsync_options="-az --info=progress2 --no-checksum --no-owner --no-group -e"
 #export rsync_options="-ahz --info=progress2 --no-checksum --no-owner --no-group -e"
 #export rsync_options="-az --delete --info=progress2 --no-checksum --no-owner --no-group -e"
