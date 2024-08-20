@@ -26,7 +26,7 @@ fi
 # Verifica se o arquivo /etc/os-release existe
 if [ -f /etc/os-release ]; then
     # Lê as informações do sistema operacional do arquivo
-    . /etc/os-release
+    source /etc/os-release
 
     # Verifica se a distribuição é CentOS ou Red Hat e se a versão é 7
     if [[ "$ID" == "centos" || "$ID" == "rhel" ]] && [[ "$VERSION_ID" == "7" ]]; then
@@ -78,6 +78,9 @@ fi
 
 mkdir -p ~/.ssh
 
+echo "$encryption_key_file"
+echo HAHA
+exit
 # Verifica se a chave simétrica já foi gerada e a lê do arquivo
 # shellcheck disable=SC2154
 if [ ! -e "$encryption_key_file" ]; then
