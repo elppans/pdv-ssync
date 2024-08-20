@@ -16,7 +16,7 @@ if [ ! -e ""$ip"onpdv" ]; then
 fi
 
 # shellcheck disable=SC2013
-for IP in $(cat ""$ip"onpdv"); do
+for IP in $(cat ""$iponpdv"); do
         if ping -c 1 ""$IP"" >>/dev/null; then
                 echo -e """"$IP""" ON!"
                 # shellcheck disable=SC2154
