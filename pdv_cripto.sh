@@ -102,11 +102,27 @@ fi
 # Lê a senha criptografada do arquivo
 senha_criptografada="$(openssl enc -aes-256-cbc -d -a -pbkdf2 -pass pass:"$encryption_key" -in "$sshpass_file")"
 export senha_criptografada
-# Não verificar a chave do host, automatizar a gravação da chave do host em cache na primeira conexão e não exibir nenhuma mensagem no terminal relacionada à verificação da chave do host.
+
+# Verifica a versão do SSH
+ssh_version=$(ssh -V 2>&1 | awk -F '[^0-9]*' '{print $2}')
+
+# Compara a versão do SSH
+# Não verificar a chave do host, 
+# automatizar a gravação da chave do host em cache na primeira conexão e 
+# não exibir nenhuma mensagem no terminal relacionada à verificação da chave do host.
+if [[ $(echo "$ssh_version >= 7.6" | bc -l) -eq 1 ]]; then
 # As opções "-o UserKnownHostsFile=/dev/null" e  "-o LogLevel=QUIET" são suportados a partir do OpenSSH 7.6
 ssh_options="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=QUIET"
-# ssh_options="-o StrictHostKeyChecking=no" # Configuração para Sistemas com SSH antigo.
+else
+# Configuração para Sistemas com SSH antigo.
+    ssh_options="-o StrictHostKeyChecking=no"
+fi
+
+# Exporta a configuração SSH
 export ssh_options
+
+# Exibe a configuração
+#echo "ssh_options=\"$ssh_options\""
 
 
 # Ajustar as permissões do arquivo sshpass_file e encryption_key_file para que somente o usuário atual possa lê-los e gravá-los de forma segura.
