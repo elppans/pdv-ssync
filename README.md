@@ -3,12 +3,12 @@
 
 # pdv-ssync
 
-Este repositório deve ser clonado em "/usr/share". Após clonar, execute o script "pdv-sfix.sh" para criar os links e diretórios necessários.
+Este repositório deve ser clonado em "/usr/share".  
+Após clonar, execute o script "pdv-sfix.sh" para criar os links e diretórios necessários.
 
 ## Dependências
 
 - rsync
-- ssh
 - sshpass
 - openssh
 - openssl 1.1.0+
