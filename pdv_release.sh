@@ -4,9 +4,11 @@
 source /usr/share/pdv-ssync/environment/pdv_env
 
 # shellcheck disable=SC2154
-if [ ! -e "$pdvcripto" ]; then
-        echo "Falta arquivo de criptografia!"
-        exit 0
+if [[ -e "$pdvcripto" ]]; then
+	source "$pdvcripto"
+else
+	echo "Falta arquivo de criptografia!"
+	exit 0
 fi
 
 # shellcheck disable=SC2154
