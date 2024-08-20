@@ -25,7 +25,8 @@ pdvmod="$pdvshelld/modulos"
 #pdvrooton=""$pdvshelld"/pdv_root-on.sh"
 pdvrooton="$pdvshelld/pdv_root-on-ssh.sh"
 pdvcripto="$pdvshelld/pdv_cripto.sh"
-
+sshpass_file=~/.ssh/pdvssl
+encryption_key_file=~/.ssh/pdv-encryption_key
 # Variaveis para arquivos para gerenciamento de IP's
 
 ipdv="$HOME/ip.txt"
@@ -63,6 +64,8 @@ export pdvshelld
 export pdvmod
 export pdvrooton
 export pdvcripto
+export sshpass_file
+export encryption_key_file
 export ipdv
 export iponpdv
 export ipoffpdv
