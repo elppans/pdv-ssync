@@ -10,21 +10,21 @@ if [ ! -e "$pdvcripto" ]; then
 fi
 
 # shellcheck disable=SC2154
-if [ ! -e "$iponpdv" ]; then
-        echo -e "Arquivo \"""$iponpdv""\" nao existe!"
+if [ ! -e ""$ip"onpdv" ]; then
+        echo -e "Arquivo \""""$ip"onpdv""\" nao existe!"
         exit 0
 fi
 
 # shellcheck disable=SC2013
-for IP in $(cat "$iponpdv"); do
-        if ping -c 1 "$IP" >>/dev/null; then
-                echo -e """$IP"" ON!"
+for IP in $(cat ""$ip"onpdv"); do
+        if ping -c 1 ""$IP"" >>/dev/null; then
+                echo -e """"$IP""" ON!"
                 # shellcheck disable=SC2154
                 # shellcheck disable=SC2140
-                sshpass -p "$senha_criptografada" ssh "$ssh_options" root@"$IP" "cat /etc/canoalinux-release" ||
-                        sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP" "cat /etc/canoalinux-release" ||
-                        sshpass -p "$senha_criptografada" ssh "$ssh_options" zanthus@"$IP" "cat /etc/canoalinux-release"
+                sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" root@""$IP"" "cat /etc/canoalinux-release" ||
+                        sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@""$IP"" "cat /etc/canoalinux-release" ||
+                        sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" zanthus@""$IP"" "cat /etc/canoalinux-release"
         else
-                echo -e """$IP"" OFF!"
+                echo -e """"$IP""" OFF!"
         fi
 done
