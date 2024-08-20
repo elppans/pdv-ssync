@@ -21,7 +21,8 @@ fi
 for IP in $(cat "$iponpdv"); do
 	if ping -c 1 "$IP" >>/dev/null; then
 		echo -e """$IP"" ON!"
-                echo -e "sshpass -p "$senha_criptografada" ssh "$ssh_options" root@"$IP" "cat /etc/canoalinux-release""
+                echo "$senha_criptografada"
+                echo "$ssh_options"
                 exit
 		sshpass -p "$senha_criptografada" ssh "$ssh_options" root@"$IP" "cat /etc/canoalinux-release" ||
 			sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP" "cat /etc/canoalinux-release" ||
