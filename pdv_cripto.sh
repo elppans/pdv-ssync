@@ -102,12 +102,13 @@ fi
 # Lê a senha criptografada do arquivo
 senha_criptografada="$(openssl enc -aes-256-cbc -d -a -pbkdf2 -pass pass:"$encryption_key" -in "$sshpass_file")"
 export senha_criptografada
-
+echo "$senha_criptografada"
 # Não verificar a chave do host, automatizar a gravação da chave do host em cache na primeira conexão e não exibir nenhuma mensagem no terminal relacionada à verificação da chave do host.
 # As opções "-o UserKnownHostsFile=/dev/null" e  "-o LogLevel=QUIET" são suportados a partir do OpenSSH 7.6
 ssh_options="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=QUIET"
 # ssh_options="-o StrictHostKeyChecking=no" # Configuração para Sistemas com SSH antigo.
 export ssh_options
+echo "$ssh_options"
 
 # Ajustar as permissões do arquivo sshpass_file e encryption_key_file para que somente o usuário atual possa lê-los e gravá-los de forma segura.
 chmod 600 "$sshpass_file"
