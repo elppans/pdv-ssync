@@ -4,7 +4,14 @@
 # pdv-ssync
 
 Este repositório deve ser clonado em "/usr/share".  
-Após clonar, execute o script "pdv-sfix.sh" para criar os links e diretórios necessários.
+
+```bash
+git clone -b <branch> --single-branch https://github.com/elppans/pdv-ssync.git
+```
+>Substitua <branch> pelo nome do branch que você deseja clonar e <repositório> pela URL do seu repositório.
+
+Após clonar, execute o script "pdv-sfix.sh" para criar os links e diretórios necessários.  
+O uso do Script consiste no comando `pdv-sync`.  
 
 ## Dependências
 
