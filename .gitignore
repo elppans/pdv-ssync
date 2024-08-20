@@ -1,18 +1,19 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-
-# Other files and folders
-.settings/
-
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+*
+!/environment
+!/ini
+!/modulos
+!/LEIAME.TXT
+!/pdv_cripto.sh
+!/pdv_descanso.sh
+!/pdv_FULL-upgrade.sh
+!/pdv_get-ip.sh
+!/pdv_release.sh
+!/pdv_root-on-ssh.sh
+!/pdv-sfix.sh
+!/pdv_status.sh
+!/pdv-sync
+!/environment/lib.sh
+!/environment/pdv_env
+!/ini/pdv.ini
+!/modulos/pdv_zmwsinfo.sh
+!/modulos/ssh-keyscan.sh
