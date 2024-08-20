@@ -10,7 +10,7 @@ if [ ! -e "$pdvcripto" ]; then
 fi
 
 # shellcheck disable=SC2154
-if [ ! -e ""$ip"onpdv" ]; then
+if [ ! -e ""$iponpdv"" ]; then
         echo -e "Arquivo \""""$ip"onpdv""\" nao existe!"
         exit 0
 fi
