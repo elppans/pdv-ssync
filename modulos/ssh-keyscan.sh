@@ -28,7 +28,7 @@ check_key_validity() {
 
 # Função para adicionar o IP ao arquivo known_hosts
 add_ip_to_known_hosts() {
-    if ! ssh-keyscan -H "$IP" >>"$KNOWN_HOSTS_FILE" >> /dev/null ; then
+    if ! ssh-keyscan -H "$IP" >>"$KNOWN_HOSTS_FILE" >/dev/null ; then
         #     echo "Chave para o IP $IP adicionado com sucesso."
         # else
         echo "Erro ao adicionar o IP $IP ao arquivo known_hosts."
@@ -38,7 +38,7 @@ add_ip_to_known_hosts() {
 
 # Função para remover o IP do arquivo known_hosts
 remove_ip_from_known_hosts() {
-    if ! ssh-keygen -R "$IP" >> /dev/null ; then
+    if ! ssh-keygen -R "$IP" >/dev/null ; then
         #     echo "Chave para o IP $IP removido com sucesso."
         # else
         echo "Erro ao remover o IP $IP do arquivo known_hosts."
