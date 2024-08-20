@@ -24,7 +24,7 @@ for IP in $(cat "$iponpdv"); do
 	if ping -c 1 "$IP" >>/dev/null; then
 		echo -e """$IP"" ON!"
                 # shellcheck disable=SC2154
-                "$pdvmod/ssh-keyscan.sh" """$IP""" >> /dev/null
+                "$pdvmod/ssh-keyscan.sh" """$IP""" &>>/dev/null
                 exit
 		sshpass -p "$senha_criptografada" ssh "$ssh_options" root@"$IP" "cat /etc/canoalinux-release" 2>>/dev/null ||
 			sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP" "cat /etc/canoalinux-release" 2>>/dev/null ||
