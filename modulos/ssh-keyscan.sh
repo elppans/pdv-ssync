@@ -52,8 +52,8 @@ main() {
     if check_ip_in_known_hosts; then
         if ! check_key_validity; then
             # echo "A chave para o IP $IP não é válida. Removendo e readicionando."
-            remove_ip_from_known_hosts
-            add_ip_to_known_hosts
+            remove_ip_from_known_hosts >>/dev/null
+            add_ip_to_known_hosts >>/dev/null
         fi
     else
         add_ip_to_known_hosts
