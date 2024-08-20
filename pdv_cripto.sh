@@ -76,11 +76,8 @@ else
     fi
 fi
 
-mkdir -p ~/.ssh
+mkdir -p "$pdvhomessl"
 
-echo "$encryption_key_file"
-echo HAHA
-exit
 # Verifica se a chave simétrica já foi gerada e a lê do arquivo
 # shellcheck disable=SC2154
 if [ ! -e "$encryption_key_file" ]; then
@@ -94,9 +91,7 @@ encryption_key=$(cat "$encryption_key_file")
 
 # Verifica se o arquivo de senha criptografada existe
 # shellcheck disable=SC2154
-echo "$sshpass_file"
-echo HEHE
-exit
+
 if [ ! -e "$sshpass_file" ]; then
     echo "Digite a senha:"
     read -r senha
