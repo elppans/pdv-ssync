@@ -91,6 +91,9 @@ encryption_key=$(cat "$encryption_key_file")
 
 # Verifica se o arquivo de senha criptografada existe
 # shellcheck disable=SC2154
+echo "$sshpass_file"
+echo HEHE
+exit
 if [ ! -e "$sshpass_file" ]; then
     echo "Digite a senha:"
     read -r senha
