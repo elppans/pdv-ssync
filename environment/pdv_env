@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Variaveis para configuração do banco
+
+dockerd="/opt/docker"
+dockerm="$dockerd/manager"
+pdvshelletc="$HOME/.local/share/pdv-ssync"
+ZMWSInfoFile="$dockerm/ZMWSInfo_manager_1.ini"
+ZMWSInfoEtc="$pdvshelletc/ZMWSInfo.env"
+zsshpass_file="$pdvshelletc/ZMWSInfo.ssl"
+zencryption_key_file="$pdvshelletc/ZMWSInfo.key"
+PORTBancoZM="5432"
+
+# Variaveis para a configuração da sincronização
+
+descanso="/opt/descanso"
+guiconfigproj="/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj"
+pdvshelld="/usr/share/pdv-ssync"
+
+# Variaveis para modulos
+pdvmod="$pdvshelld/modulos"
+
+# Variaveis para comandos
+
+#pdvrooton=""$pdvshelld"/pdv_root-on.sh"
+pdvrooton="$pdvshelld/pdv_root-on-ssh.sh"
+pdvcripto="$pdvshelld/pdv_cripto.sh"
+
+# Variaveis para arquivos para gerenciamento de IP's
+
+ipdv="$HOME/ip.txt"
+iponpdv="$HOME/ip_on.txt"
+ipoffpdv="$HOME/ip_off.txt"
+iponupgradepdv="$HOME/ip_on_upgrade.txt"
+
+# Variaveis para opções de comandos para sincronização
+# Sincronismo com opção para deletar, apaga todos os arquivos do destino que não existem em origem
+# Sincronismo com a opção de progresso, não mostra os arquivos que serão sincronisados
+# Sincronismo padrão é o mais seguro e em modo verbose
+
+#rsync_options="-avz --no-checksum --no-owner --no-group -e"
+rsync_options="-ahvz --no-checksum --no-owner --no-group -e"
+#rsync_options="-avz --delete --no-checksum --no-owner --no-group -e"
+#rsync_options="-ahvz --delete --no-checksum --no-owner --no-group -e"
+#rsync_options="-az --info=progress2 --no-checksum --no-owner --no-group -e"
+#rsync_options="-ahz --info=progress2 --no-checksum --no-owner --no-group -e"
+#rsync_options="-az --delete --info=progress2 --no-checksum --no-owner --no-group -e"
+#rsync_options="-ahz --delete --info=progress2 --no-checksum --no-owner --no-group -e"
+
+# Exportar todas as variáveis configuradas
+
+export dockerd
+export dockerm
+export pdvshelletc
+export ZMWSInfoFile
+export ZMWSInfoEtc
+export zsshpass_file
+export zencryption_key_file
+export PORTBancoZM
+export descanso
+export guiconfigproj
+export pdvshelld
+export pdvmod
+export pdvrooton
+export pdvcripto
+export ipdv
+export iponpdv
+export ipoffpdv
+export iponupgradepdv
+export rsync_options

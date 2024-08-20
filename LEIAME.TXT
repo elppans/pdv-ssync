@@ -1,0 +1,90 @@
+pdv-ssync
+
+Deve ser clonado em "/usr/share"
+Após clonar, deve ser executado o Script "pdv-sfix.sh" para criar os links e diretórios necessários 
+
+Dependências:
+
+rsync
+ssh
+sshpass
+openssh
+openssl 1.1.0+
+
+Atualizar OpenSSL no CentOS 7:
+
+Via pacote (RECOMENDADO):
+
+sudo yum -y install epel-release
+sudo yum install openssl11
+whereis openssl11
+printf '%s\n' 'alias openssl="/usr/bin/openssl11"' | sudo tee -a /etc/profile
+
+Via source:
+
+Se não for possível instalar o pacote "openssl11" por algum motivo, baixe e instale via source
+
+Link do Source (Recomendado a versão 1.1.1): https://www.openssl.org/source/old/
+
+Fontes:
+
+https://computingforgeeks.com/how-to-install-openssl-1-1-on-centos-rhel-7/
+https://stackoverflow.com/questions/63508872/upgrading-centos-7-to-openssl-1-1-1-by-yum-install-openssl11
+
+Red Hat 7
+
+Verificar o link:
+
+https://access.redhat.com/articles/1462183
+
+__________________________________________
+
+Opções do Script "pdv-sync":
+
+--status, -s:
+Verifica se o IP do PDV está pingando (ON!) ou não (OFF!) e cria um arquivo com o nome ip_on.txt
+
+--versao, -v:
+OPCIONAL. Adiciona a chave do PDV ao SSH e verifica a versão de cada PDV Online. Depende de "ip_on.txt"
+
+--atualizar-ssh, -as (RECOMENDADO):
+O 1º, Com a chave adicionada, acessa o PDV e ativa o sudo sem senha, senha do root e acesso SSH com root
+
+--sincronizar-descanso, -sd:
+Com o acesso SSH usando root ativado, copia o conteúdo de /opt/descanso para o PDV em */pdvGUI/guiConfigProj.
+
+--atualizacao-total, -at (ALTERNATIVA)
+Fazer diretamente o comando "pdv-upgrade", EXECUTA os 3 comandos necessários seguidos na ordem:
+
+--status > --atualizar-ssh > --sincronizar-descanso
+
+- Observações:
+
+01) Executar cada opção na ordem correta, um depende do outro.
+__________________________________________
+
+Busca por IP:
+
+Para baixar a lista de IP deve executar o parametro "--puxar-ip | -pi".
+Este comando depende de acesso ao banco e o comando psql deve estar instalado.
+Se o docker estiver instalado, o comando irá buscar o arquivo "/opt/docker/manager/ZMWSInfo_manager_1.ini" para usar
+Se o docker NÃO estiver instalado, deve criar um arquivo em seu "$HOME":
+
+"$HOME/.local/share/pdv-ssync/ZMWSInfo.env"
+
+Este arquivo deve ter o seguinte conteúdo. Exemplo:
+
+export PGHOST=192.168.15.118
+export PGUSER=pgadmin
+export PGDATABASE=ZeusRetail
+
+Para o uso da senha, deve ser criado o arquivo de chaves "ZMWSInfo.key" com o seguinte comando:
+
+openssl rand -base64 32 > "$HOME/.local/share/pdv-ssync/ZMWSInfo.key"
+
+Depois de criar o arquivo de chaves, deve gerar a senha com o comando:
+
+read -p "PWD: " PWD && printf "$PWD" | openssl enc -aes-256-cbc -salt -a -pbkdf2 -pass pass:"$HOME/.local/share/pdv-ssync/ZMWSInfo.key" -out "$HOME/.local/share/pdv-ssync/ZMWSInfo.ssl"
+
+
+O conteúdo do "Descanso" do PDV deve ser configurado em "/opt/descanso"

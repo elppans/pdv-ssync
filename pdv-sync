@@ -1,0 +1,105 @@
+#!/bin/env bash
+
+# shellcheck source=/dev/null
+source /usr/share/pdv-ssync/environment/pdv_env
+
+OPCOES="$1"
+
+# Funções
+pdv_descanso() {
+    # shellcheck disable=SC2154
+    "$pdvshelld"/pdv_descanso.sh
+}
+
+pdv_getip() {
+    "$pdvshelld"/pdv_get-ip.sh "$@"
+}
+
+pdv_release() {
+    "$pdvshelld"/pdv_release.sh
+}
+
+pdv_status() {
+    "$pdvshelld"/pdv_status.sh
+}
+
+pdv_update_ssh() {
+    "$pdvshelld"/pdv_root-on-ssh.sh
+}
+
+pdv_upgrade() {
+    "$pdvshelld"/pdv_FULL-upgrade.sh
+}
+
+# Função de ajuda
+mostrar_ajuda() {
+    echo "Uso: $0 [opções]"
+    echo
+    echo "Opções:"
+    echo "  --sincronizar-descanso, -sd    Sincroniza o Descanso do(s) PDV(s) de acordo com o(s) IP(s) baixados"
+    echo "  --puxar-ip, -pi                Baixa uma lista de IP do(s) PDV(s) do banco (este parâmetro contém um sub-help)"
+    echo "  --versao, -v                   Verifica a versão  do(s) PDV(s) de acordo com o(s) IP(s) baixados"
+    echo "  --status, -s                   Verifica o Status do(s) PDV(s) de acordo com o(s) IP(s) baixados e separa-os em uma lista de PDV(s) ON/OFF"
+    echo "  --atualizar-ssh, -as           Atualiza informações SSH do(s) PDV(s)"
+    echo "  --atualizacao-total, -at       Verifica o Status, atualiza informações SSH e sincroniza o Descanso do(s) PDV(s) de acordo com o(s) IP(s) baixados"
+    echo
+    echo "Se nenhuma opção for fornecida, será exibida esta mensagem de ajuda."
+}
+
+# Processa as opções
+if [[ "$#" -eq 0 ]]; then
+    mostrar_ajuda
+    exit 1
+fi
+
+while [[ "$#" -gt 0 ]]; do
+    case "${OPCOES,,}" in
+    --sincronizar-descanso | -sd)
+        pdv_descanso
+        shift
+        ;;
+    --puxar-ip | -pi)
+        if [ -n "$#" ]; then
+            export OPTIONS_BD="$2"
+            export LJ="$3"
+            export NUMPDV="$4"
+            export PDV="$5"
+            pdv_getip "$@"
+            exit 0
+        fi
+        shift
+        ;;
+    --versao | -v)
+        pdv_release
+        shift
+        ;;
+    --status | -s)
+        pdv_status
+        shift
+        ;;
+    --atualizar-ssh | -as)
+        pdv_update_ssh
+        shift
+        ;;
+    --atualizacao-total | -at)
+        pdv_upgrade
+        if [ -n "$#" ]; then
+            pdv_getip "$@"
+        fi
+        pdv_status
+        pdv_update_ssh
+        pdv_descanso
+        shift
+        ;;
+    --help | -h)
+        mostrar_ajuda
+        shift
+        exit 0
+        ;;
+    *)
+        echo "Opção inválida: $1"
+        mostrar_ajuda
+        exit 1
+        ;;
+    esac
+done
