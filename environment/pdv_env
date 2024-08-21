@@ -41,11 +41,11 @@ iponupgradepdv="$HOME/ip_on_upgrade.txt"
 # Sincronismo padrão é o mais seguro e em modo verbose
 
 #rsync_options="-avz --no-checksum --no-owner --no-group -e"
-rsync_options="-ahvz --no-checksum --no-owner --no-group -e"
+# rsync_options="-ahvz --no-checksum --no-owner --no-group -e"
 #rsync_options="-avz --delete --no-checksum --no-owner --no-group -e"
 #rsync_options="-ahvz --delete --no-checksum --no-owner --no-group -e"
 #rsync_options="-az --info=progress2 --no-checksum --no-owner --no-group -e"
-#rsync_options="-ahz --info=progress2 --no-checksum --no-owner --no-group -e"
+rsync_options="-ahz --info=progress2 --no-checksum --no-owner --no-group -e"
 #rsync_options="-az --delete --info=progress2 --no-checksum --no-owner --no-group -e"
 #rsync_options="-ahz --delete --info=progress2 --no-checksum --no-owner --no-group -e"
 
