@@ -33,7 +33,7 @@ for IP in $(cat "$IPON"); do
         "$pdvmod/ssh-keyscan.sh" """$IP""" &>>/dev/null
         #Ubuntu 16.04
         # shellcheck disable=SC2154
-        echo "$ssh_options"
+        echo -e "sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP""
         exit
         sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP" "\
 echo ""$senha_criptografada"" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config; \
