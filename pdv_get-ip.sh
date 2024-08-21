@@ -1,16 +1,13 @@
 #!/bin/bash
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
 
 #set -x
 #set -e
 #rm -v ~/.local/share/pdv-ssync/ZMWSInfo.env
 
-# shellcheck source=/dev/null
 source /usr/share/pdv-ssync/environment/pdv_env
-# shellcheck source=/dev/null
-# shellcheck disable=SC2154
 source "$pdvshelld"/modulos/pdv_zmwsinfo.sh
-#. $ZMWSInfoEtc
-# shellcheck source=/dev/null
 source "$HOME"/.local/share/pdv-ssync/ZMWSInfo.env
 source "$pdvshelld"/environment/lib.sh
 
