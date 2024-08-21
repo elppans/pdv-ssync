@@ -35,7 +35,7 @@ for IP in $(cat "$iponpdv"); do
     if ping -c 1 "$IP" >>/dev/null; then
         echo -e """$IP"" ON!"
         # shellcheck disable=SC2154
-        "$pdvmod/ssh-keyscan.sh" """$IP""" >>/dev/null
+        "$pdvmod/ssh-keyscan.sh" """$IP""" &>>/dev/null
         # Copia via SSH
         #sshpass -p zanthus scp -o StrictHostKeyChecking=no -r /opt/descanso/* root@"$IP":/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj/
         # shellcheck disable=SC2154
