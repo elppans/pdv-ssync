@@ -36,7 +36,7 @@ execute_ssh_commands() {
 # echo \"$PASSWORD\" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config; \
 # echo \"$PASSWORD\" | sudo -S sh -c 'grep -q \"^PermitRootLogin yes$\" /etc/ssh/sshd_config || echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config'; \
 # echo \"$PASSWORD\" | sudo -S systemctl restart sshd;
-hostnamectl
+lsb_release -a
 "
 }
 
