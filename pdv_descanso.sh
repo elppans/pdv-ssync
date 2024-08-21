@@ -44,7 +44,7 @@ for IP in $(cat "$iponpdv"); do
 
         sshpass -p ""$senha_criptografada"" \
         rsync ""$rsync_options"" \
-        ssh ""$ssh_options"" "$descanso"/ root@"$IP":"$guiconfigproj"/
+        ssh ""$ssh_options"" ""$descanso""/ root@""$IP"":""$guiconfigproj""/
     }
 
     # Verifica se o IP está comunicando
