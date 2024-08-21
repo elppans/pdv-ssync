@@ -95,6 +95,9 @@ while [[ "$#" -gt 0 ]]; do
             export PDV="$5"
             pdv_getip "$@"
         fi
+        if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+            exit 0
+        fi
         pdv_status
         pdv_update_ssh
         pdv_descanso
