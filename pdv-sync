@@ -102,6 +102,7 @@ while [[ "$#" -gt 0 ]]; do
         # pdv_update_ssh
         # pdv_descanso
         # shift
+        exit 0
         ;;
     --help | -h)
         mostrar_ajuda
