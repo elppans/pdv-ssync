@@ -52,7 +52,7 @@ for IP in $(cat "$iponpdv"); do
 
     # Verifica se o IP está comunicando
     if ping -c 1 "$IP" >>/dev/null; then
-        echo -e """$IP"" ON!"
+        echo -e """$IP"" SYNC..."
         # Faz a sincronização via Função SSH
         ssh_sync
     else
