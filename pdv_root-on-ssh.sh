@@ -33,7 +33,7 @@ for IP in $(cat "$IPON"); do
         "$pdvmod/ssh-keyscan.sh" "$IP" &>>/dev/null
         # Função para executar comandos SSH
         execute_ssh_commands() {
-            local USER={USER:-$1}
+            local USER="$1"
             export IP
             export senha_criptografada
             export ssh_options
