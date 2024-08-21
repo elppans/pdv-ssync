@@ -30,7 +30,7 @@ for IP in $(cat "$IPON"); do
     if ping -c 1 "$IP" >>/dev/null; then
         echo -e "\n""$IP"" ON!"
         # shellcheck disable=SC2154
-        "$pdvmod/ssh-keyscan.sh" """$IP"""
+        "$pdvmod/ssh-keyscan.sh" """$IP""" &>>/dev/null
         #Ubuntu 16.04
         # shellcheck disable=SC2154
         sshpass -p "$senha_criptografada" ssh "$ssh_options" user@"$IP" "\
