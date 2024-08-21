@@ -30,24 +30,27 @@ if [ ! "$(ls -A "$descanso")" ]; then
     exit 1
 fi
 
+# Verifica o IP configurado no arquivo referente
 # shellcheck disable=SC2013
 for IP in $(cat "$iponpdv"); do
-    if ping -c 1 "$IP" >>/dev/null; then
-        echo -e """$IP"" ON!"
-        # shellcheck disable=SC2154
-        "$pdvmod/ssh-keyscan.sh" """$IP""" &>>/dev/null
-        # Copia via SSH
-        #sshpass -p zanthus scp -o StrictHostKeyChecking=no -r /opt/descanso/* root@"$IP":/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj/
-        # shellcheck disable=SC2154
-        echo -e "senha_criptografada=$senha_criptografada"
-        echo -e "rsync_options=$rsync_options"
-        echo -e "ssh_options=$ssh_options" 
-        echo -e "descanso=$descanso"
-        echo -e "IP=$IP"
-        echo -e "guiconfigproj=$guiconfigproj"
-        exit
-        sshpass -p "$senha_criptografada" rsync "$rsync_options" ssh "$ssh_options" "$descanso"/ root@"$IP":"$guiconfigproj"/
-    else
-        echo -e """$IP"" OFF!"
-    fi
+
+# Função para sincronização do Descanso
+ssh_sync(){
+export senha_criptografada
+export rsync_options
+export ssh_options
+export descanso
+export IP
+
+sshpass -p "$senha_criptografada" rsync ""$rsync_options"" ssh ""$ssh_options"" "$descanso"/ root@"$IP":"$guiconfigproj"/
+}
+
+# Verifica se o IP está comunicando
+if ping -c 1 "$IP" >> /dev/null; then
+echo -e """$IP"" ON!"
+# Faz a sincronização via Função SSH
+ssh_sync
+ else
+echo -e """$IP"" OFF!"
+fi
 done
