@@ -49,7 +49,9 @@ for IP in $(cat "$IPON"); do
 
         # Verifica a versão do Ubuntu e executa os comandos apropriados
         if sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@"$IP" "lsb_release -r | grep -q '16.04'"; then
-            execute_ssh_commands "$IP" "user" ""$senha_criptografada"" ""$ssh_options""
+            # execute_ssh_commands "$IP" "user" ""$senha_criptografada"" ""$ssh_options""
+            echo "Ubuntu 16"
+            exit
         elif sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" zanthus@"$IP" "lsb_release -r | grep -q '22.04'"; then
         execute_ssh_commands "$IP" "zanthus" ""$senha_criptografada"" ""$ssh_options""
         else
