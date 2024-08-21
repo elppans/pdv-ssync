@@ -32,7 +32,7 @@ execute_ssh_commands() {
     local PASSWORD=$3
     local SSH_OPTIONS=$4
 
-    sshpass -p "$PASSWORD" ssh "$SSH_OPTIONS" "$USER@$IP" "lsb_release -a"
+    sshpass -p "$PASSWORD" ssh ""$SSH_OPTIONS"" "$USER@$IP" "lsb_release -a"
 }
 
 # shellcheck disable=SC2013
