@@ -98,7 +98,7 @@ while [[ "$#" -gt 0 ]]; do
         if [ "$2" = "-h" ] || [ "$2" = "--help" ]; then
             exit 0
         fi
-        pdv_status
+        #pdv_status
         # pdv_update_ssh
         # pdv_descanso
         shift
