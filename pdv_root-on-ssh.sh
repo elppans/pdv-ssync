@@ -33,9 +33,6 @@ execute_ssh_commands() {
     local SSH_OPTIONS=$4
 
     sshpass -p "$PASSWORD" ssh "$SSH_OPTIONS" "$USER@$IP" "
-# echo \"$PASSWORD\" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config; \
-# echo \"$PASSWORD\" | sudo -S sh -c 'grep -q \"^PermitRootLogin yes$\" /etc/ssh/sshd_config || echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config'; \
-# echo \"$PASSWORD\" | sudo -S systemctl restart sshd;
 lsb_release -a
 "
 }
