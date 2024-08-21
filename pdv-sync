@@ -64,7 +64,7 @@ while [[ "$#" -gt 0 ]]; do
             export LJ="$3"
             export NUMPDV="$4"
             export PDV="$5"
-            pdv_getip "$@"
+            pdv_getip "$@" 2>>/dev/null
             exit 0
         fi
         shift
