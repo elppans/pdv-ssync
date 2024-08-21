@@ -40,7 +40,7 @@ for IP in $(cat "$iponpdv"); do
         #sshpass -p zanthus scp -o StrictHostKeyChecking=no -r /opt/descanso/* root@"$IP":/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj/
         # shellcheck disable=SC2154
         # echo -e "
-        sshpass -p """$senha_criptografada""" rsync """$rsync_options""" ""ssh "$ssh_options""" "$descanso"/ root@"$IP":"$guiconfigproj"/
+        sshpass -p "$senha_criptografada" rsync "$rsync_options" ssh "$ssh_options" "$descanso"/ root@"$IP":"$guiconfigproj"/
         # "
         # exit
     else
