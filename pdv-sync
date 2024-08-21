@@ -83,9 +83,9 @@ while [[ "$#" -gt 0 ]]; do
         ;;
     --atualizacao-total | -at)
         # pdv_upgrade
-        # if [ -n "$#" ]; then
-        #     pdv_getip "$@"
-        # fi
+        if [ -n "$#" ]; then
+            pdv_getip "$@"
+        fi
         pdv_status
         pdv_update_ssh
         pdv_descanso
