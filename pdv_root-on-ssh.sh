@@ -46,7 +46,7 @@ for IP in $(cat "$IPON"); do
             export senha_criptografada
             export ssh_options
 
-            execute_ssh_commands "$IP" "user" ""$senha_criptografada"" ""$ssh_options""
+            sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@"$IP" "echo OKOK"
         }
 
         execute_ssh_pdv22() {
