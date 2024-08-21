@@ -2,10 +2,11 @@
 # shellcheck source=/dev/null
 source /opt/pdv-ssync/pdv_env
 
-# IPBancoZM="192.168.15.118"
-# DatabaseNameBase="ZeusRetail"
-# User="pgadmin"
-#Senha="pgadmin"
+IPBancoZM="192.168.0.200"
+DatabaseNameBase="ZeusFonteNova"
+User="postgres"
+Senha="postgres"
+
 LJ="$2"
 PDV="$4"
 
