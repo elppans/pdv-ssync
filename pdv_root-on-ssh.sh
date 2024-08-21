@@ -42,7 +42,7 @@ for IP in $(cat "$IPON"); do
             echo "OK 1"
             echo "OK 2"
             echo "OK 3"
-            " >>/dev/null
+            " 2>>/dev/null
         }
         # Verifica a versão do Ubuntu e executa os comandos apropriados
         if sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@"$IP" "lsb_release -r | grep -q '16.04'" &>>/dev/null; then
