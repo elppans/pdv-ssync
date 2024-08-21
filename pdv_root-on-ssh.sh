@@ -34,13 +34,15 @@ for IP in $(cat "$IPON"); do
         # Função para executar comandos SSH
         execute_ssh_commands() {
             local USER="$1"
+            local PASSWORD="${PASSWORD:-$senha_criptografada}"
             export IP
             export senha_criptografada
             export ssh_options
 
             sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" "$USER"@"$IP" "
-            echo "OK 1"
-            echo "OK 2"
+            echo \"$PASSWORD\" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config; 
+            echo \"$PASSWORD\" | sudo -S sh -c 'grep -q \"^PermitRootLogin yes$\" /etc/ssh/sshd_config || echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config'; 
+            echo \"$PASSWORD\" | sudo -S systemctl restart sshd;
             " 2>>/dev/null
         }
         # Verifica a versão do Ubuntu e executa os comandos apropriados
