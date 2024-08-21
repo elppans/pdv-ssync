@@ -48,10 +48,10 @@ for IP in $(cat "$IPON"); do
         "$pdvmod/ssh-keyscan.sh" "$IP" &>>/dev/null
 
         # Verifica a versão do Ubuntu e executa os comandos apropriados
-        if sshpass -p "$senha_criptografada" ssh ""$ssh_options"" user@"$IP" "lsb_release -r | grep -q '16.04'"; then
-            execute_ssh_commands "$IP" "user" "$senha_criptografada" ""$ssh_options""
-        elif sshpass -p "$senha_criptografada" ssh ""$ssh_options"" zanthus@"$IP" "lsb_release -r | grep -q '22.04'"; then
-        execute_ssh_commands "$IP" "zanthus" "$senha_criptografada" ""$ssh_options""
+        if sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@"$IP" "lsb_release -r | grep -q '16.04'"; then
+            execute_ssh_commands "$IP" "user" ""$senha_criptografada"" ""$ssh_options""
+        elif sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" zanthus@"$IP" "lsb_release -r | grep -q '22.04'"; then
+        execute_ssh_commands "$IP" "zanthus" ""$senha_criptografada"" ""$ssh_options""
         else
             echo "Não foi possível verificar o sistema do IP \"$IP\""
         fi
