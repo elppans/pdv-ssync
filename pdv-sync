@@ -83,13 +83,17 @@ while [[ "$#" -gt 0 ]]; do
         ;;
     --atualizacao-total | -at)
         # pdv_upgrade
+        # Verifica se $2 está vazio
+        if [ -z "$2" ]; then
+            echo "Erro: O segundo parâmetro não foi fornecido."
+            exit 1
+        fi
         if [ -n "$#" ]; then
             export OPTIONS_BD="$2"
             export LJ="$3"
             export NUMPDV="$4"
             export PDV="$5"
             pdv_getip "$@"
-            exit 0
         fi
         pdv_status
         pdv_update_ssh
