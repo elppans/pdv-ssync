@@ -28,7 +28,7 @@ fi
 # shellcheck disable=SC2013
 for IP in $(cat "$IPON"); do
     if ping -c 1 "$IP" >>/dev/null; then
-        echo -e "\n$IP ON!"
+        echo -e "\n$IP SSH.."
         # shellcheck disable=SC2154
         "$pdvmod/ssh-keyscan.sh" "$IP" &>>/dev/null
         # Função para executar comandos SSH
