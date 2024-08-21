@@ -84,7 +84,12 @@ while [[ "$#" -gt 0 ]]; do
     --atualizacao-total | -at)
         # pdv_upgrade
         if [ -n "$#" ]; then
+            export OPTIONS_BD="$2"
+            export LJ="$3"
+            export NUMPDV="$4"
+            export PDV="$5"
             pdv_getip "$@"
+            exit 0
         fi
         pdv_status
         pdv_update_ssh
