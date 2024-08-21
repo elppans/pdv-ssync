@@ -39,10 +39,14 @@ for IP in $(cat "$iponpdv"); do
         # Copia via SSH
         #sshpass -p zanthus scp -o StrictHostKeyChecking=no -r /opt/descanso/* root@"$IP":/Zanthus/Zeus/pdvJava/pdvGUI/guiConfigProj/
         # shellcheck disable=SC2154
-        # echo -e "
+        echo -e "senha_criptografada=$senha_criptografada"
+        echo -e "rsync_options=$rsync_options"
+        echo -e "ssh_options=$ssh_options" 
+        echo -e "descanso=$descanso"
+        echo -e "IP=$IP"
+        echo -e "guiconfigproj=$guiconfigproj"
+        exit
         sshpass -p "$senha_criptografada" rsync "$rsync_options" ssh "$ssh_options" "$descanso"/ root@"$IP":"$guiconfigproj"/
-        # "
-        # exit
     else
         echo -e """$IP"" OFF!"
     fi
