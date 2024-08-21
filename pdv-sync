@@ -82,7 +82,7 @@ while [[ "$#" -gt 0 ]]; do
         shift
         ;;
     --atualizacao-total | -at)
-        pdv_upgrade
+        # pdv_upgrade
         if [ -n "$#" ]; then
             pdv_getip "$@"
         fi
