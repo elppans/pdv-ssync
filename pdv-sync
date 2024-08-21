@@ -99,8 +99,8 @@ while [[ "$#" -gt 0 ]]; do
             exit 0
         fi
         pdv_status
-        pdv_update_ssh
-        pdv_descanso
+        # pdv_update_ssh
+        # pdv_descanso
         shift
         ;;
     --help | -h)
