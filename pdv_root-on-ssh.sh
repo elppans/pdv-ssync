@@ -42,10 +42,18 @@ for IP in $(cat "$IPON"); do
         # shellcheck disable=SC2154
         "$pdvmod/ssh-keyscan.sh" "$IP" &>>/dev/null
         execute_ssh_pdv16() {
+            export IP
+            export senha_criptografada
+            export ssh_options
+
             execute_ssh_commands "$IP" "user" ""$senha_criptografada"" ""$ssh_options""
         }
 
         execute_ssh_pdv22() {
+            export IP
+            export senha_criptografada
+            export ssh_options
+            
             execute_ssh_commands "$IP" "zanthus" ""$senha_criptografada"" ""$ssh_options""
         }
         # Verifica a versão do Ubuntu e executa os comandos apropriados
