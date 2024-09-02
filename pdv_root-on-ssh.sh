@@ -43,6 +43,7 @@ for IP in $(cat "$IPON"); do
             echo \"$PASSWORD\" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config &>>/dev/null; 
             echo \"$PASSWORD\" | sudo -S sh -c 'grep -q \"^PermitRootLogin yes$\" /etc/ssh/sshd_config || echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config' &>>/dev/null; 
             echo \"$PASSWORD\" | sudo -S systemctl restart sshd &>>/dev/null;
+            echo \"$PASSWORD\" | sudo -S service ssh restart &>>/dev/null;
             grep -q PermitRootLogin /etc/ssh/sshd_config && echo "RootLogin OK" || echo "RootLogin não configurado"
             #systemctl status sshd
             " 2>>/dev/null
@@ -51,6 +52,8 @@ for IP in $(cat "$IPON"); do
         if sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" user@"$IP" "lsb_release -r | grep -q '16.04'" &>>/dev/null; then
             execute_ssh_commands user
         elif sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" zanthus@"$IP" "lsb_release -r | grep -q '22.04'"; then
+            execute_ssh_commands zanthus
+        elif sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" zanthus@"$IP" "lsb_release -r | grep -q '12.04'"; then
             execute_ssh_commands zanthus
         else
             echo "Não foi possível verificar o sistema do IP \"$IP\""
