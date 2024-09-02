@@ -42,6 +42,7 @@ for IP in $(cat "$IPON"); do
             sshpass -p ""$senha_criptografada"" ssh ""$ssh_options"" "$USER"@"$IP" "
             echo \"$PASSWORD\" | sudo -S sed -i '/^PermitRootLogin prohibit-password/!b;/^#PermitRootLogin prohibit-password/b;s/^PermitRootLogin prohibit-password/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config &>>/dev/null; 
             echo \"$PASSWORD\" | sudo -S sh -c 'grep -q \"^PermitRootLogin yes$\" /etc/ssh/sshd_config || echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config' &>>/dev/null; 
+            echo -e "$PASSWORD\n$PASSWORD" | sudo -S passwd root ;
             echo \"$PASSWORD\" | sudo -S systemctl restart sshd &>>/dev/null;
             echo \"$PASSWORD\" | sudo -S service ssh restart &>>/dev/null;
             grep -q PermitRootLogin /etc/ssh/sshd_config && echo "RootLogin OK" || echo "RootLogin não configurado"
