@@ -37,7 +37,7 @@ iponupgradepdv="$HOME/ip_on_upgrade.txt"
 
 # Variaveis para opções de comandos para sincronização
 # Sincronismo com opção para deletar, apaga todos os arquivos do destino que não existem em origem
-# Sincronismo com a opção de progresso, não mostra os arquivos que serão sincronisados
+# Sincronismo com a opção de progresso, não mostra os arquivos que serão sincronizados
 # Sincronismo padrão é o mais seguro e em modo verbose
 
 #rsync_options="-avz --no-checksum --no-owner --no-group -e"
